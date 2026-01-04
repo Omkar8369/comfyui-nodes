@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TransitFlow | Transportation App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="brand">
+      <div class="brand-mark">TF</div>
+      <div>
+        <div class="brand-title">TransitFlow</div>
+        <div class="brand-subtitle">Your multimodal travel companion</div>
+      </div>
+    </div>
+    <div class="status-pill">Realtime updates enabled</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel search-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Trip planner</p>
+          <h1>Find a ride that fits your day</h1>
+          <p class="lede">Compare buses, trains, rideshares, and micromobility options in one place.</p>
+        </div>
+        <div class="badge">Updated just now</div>
+      </div>
+
+      <form id="search-form" class="search-grid" autocomplete="off">
+        <label class="field">
+          <span class="label">From</span>
+          <input type="text" id="origin" placeholder="City or stop" required />
+        </label>
+        <label class="field">
+          <span class="label">To</span>
+          <input type="text" id="destination" placeholder="City or stop" required />
+        </label>
+        <label class="field">
+          <span class="label">Date</span>
+          <input type="date" id="travel-date" />
+        </label>
+        <label class="field">
+          <span class="label">Departure after</span>
+          <input type="time" id="travel-time" />
+        </label>
+        <label class="field">
+          <span class="label">Maximum price ($)</span>
+          <input type="number" id="max-price" min="0" step="1" placeholder="Any" />
+        </label>
+        <label class="field">
+          <span class="label">Modes</span>
+          <div class="modes">
+            <label><input type="checkbox" name="mode" value="Bus" checked /> Bus</label>
+            <label><input type="checkbox" name="mode" value="Train" checked /> Train</label>
+            <label><input type="checkbox" name="mode" value="Ferry" checked /> Ferry</label>
+            <label><input type="checkbox" name="mode" value="Bike" checked /> Bike</label>
+            <label><input type="checkbox" name="mode" value="Carpool" checked /> Carpool</label>
+          </div>
+        </label>
+        <button class="primary" type="submit">Search rides</button>
+      </form>
+
+      <div class="search-meta" id="search-meta"></div>
+    </section>
+
+    <section class="panel results-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Options</p>
+          <h2>Available trips</h2>
+        </div>
+        <div class="chip" id="result-count">0 results</div>
+      </div>
+      <div id="results" class="results"></div>
+    </section>
+
+    <section class="panel summary-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">My trips</p>
+          <h2>Itinerary cart</h2>
+          <p class="lede">Hold seats while you explore the schedule.</p>
+        </div>
+        <div class="chip" id="cart-count">0 saved</div>
+      </div>
+      <ul id="cart" class="cart"></ul>
+      <div class="cart-summary" id="cart-summary">No trips saved yet.</div>
+    </section>
+
+    <section class="panel secondary">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Status</p>
+          <h2>Service alerts</h2>
+        </div>
+      </div>
+      <ul id="alerts" class="alerts"></ul>
+    </section>
+  </main>
+
+  <template id="result-template">
+    <article class="card">
+      <div class="card-row">
+        <div>
+          <p class="eyebrow mode">Bus</p>
+          <h3 class="route">Downtown → Uptown</h3>
+          <p class="details"></p>
+          <div class="tags"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+      <div class="card-row meta">
+        <div class="schedule"></div>
+        <div class="seats"></div>
+        <div class="eco"></div>
+        <button class="secondary book">Hold seat</button>
+      </div>
+    </article>
+  </template>
+
+  <template id="cart-template">
+    <li class="cart-item">
+      <div>
+        <div class="route"></div>
+        <div class="schedule"></div>
+      </div>
+      <div class="price"></div>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
